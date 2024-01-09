@@ -2,14 +2,16 @@
 title: scons兼容性问题
 date: 2024-01-03 16:51:26
 category:
-- 文章
+  - 文章
 tags:
-- python
-- godot
-- scons
-- 编译
+  - python
+  - godot
+  - scons
+  - 编译
 ---
-今天在研究GDExtension，使用scons带custom_api_file参数编译Godot的时候遇到了如下报错：
+
+今天在研究 GDExtension，使用 scons 带 custom_api_file 参数编译 Godot 的时候遇到了如下报错：
+
 ```
 AttributeError: 'str' object has no attribute 'decode':
 File "D:\Godot\GDExtension\gdextension_cpp_example\godot_cpp\SConstruct", line 124:
@@ -46,7 +48,7 @@ File "C:\Users\95851\AppData\Local\Programs\Python\Python39\lib\site-packages\SC
 lines = cp.stdout.decode("mbcs").splitlines()
 ```
 
-问AI后得知，原因是在Python 3中，subprocess.Popen 的 stdout 默认返回的是解码后的字符串，而不是原始的字节流。而在上述代码片段中，它尝试对已经解码过的字符串再次进行解码。
+问 AI 后得知，原因是在 Python 3 中，subprocess.Popen 的 stdout 默认返回的是解码后的字符串，而不是原始的字节流。而在上述代码片段中，它尝试对已经解码过的字符串再次进行解码。
 
 解决方案为在 `subprocess.Popen` 的调用参数中加上 `encoding=None` 来获取未经解码的字节串。
 

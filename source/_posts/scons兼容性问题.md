@@ -1,13 +1,11 @@
 ---
-title: scons兼容性问题
+title: SCons兼容性问题
 date: 2024-01-03 16:51:26
 category:
-  - 文章
+  - 随笔
 tags:
-  - python
-  - godot
-  - scons
-  - 编译
+  - Python
+  - Scons
 ---
 
 今天在研究 GDExtension，使用 scons 带 custom_api_file 参数编译 Godot 的时候遇到了如下报错：

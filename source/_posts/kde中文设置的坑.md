@@ -1,5 +1,5 @@
 ---
-title: kde中文设置的坑
+title: KDE中文设置的坑
 date: 2024-01-10 02:34:53
 category:
   - 随笔

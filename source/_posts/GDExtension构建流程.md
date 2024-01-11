@@ -264,6 +264,8 @@ scons platform=系统名
 entry_symbol = "example_library_init"
 # 允许加载该 Extension 的最低 Godot 版本
 compatibility_minimum = "4.2"
+# 开启热重载
+reloadable = true
 
 [libraries]
 
@@ -334,4 +336,4 @@ GDExample = "res://icon.svg"
 
 以上内容展示了构建 GDExtension 的基础部分，现在你可以尝试编写更复杂脚本来控制 Godot 中的节点了。
 
-每当你对 Extension 做出了修改，只需要在`工程目录`下重新[构建写好的 Extension](#5-构建写好的-extension)，再回到编辑器中，点击 `场景 -> 重载已保存场景` ，刚刚的改动就会被加载到编辑器中了。
+每当你对 Extension 做出了修改，只需要在`工程目录`下重新[构建写好的 Extension](#5-构建写好的-Extension)，再回到编辑器中，点击 `场景 -> 重载已保存场景` ，刚刚的改动就会被加载到编辑器中了。

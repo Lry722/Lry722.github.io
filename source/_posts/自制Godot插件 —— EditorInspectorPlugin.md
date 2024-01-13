@@ -8,11 +8,13 @@ tags:
   - Godot 插件
 ---
 
-如果想要给一个自定义的对象（通常是 resource）在检查器中添加自定义编辑界面，就要用到 EditorInspectorPlugin 。
+如果想要给一个自定义的对象（通常是 resource）在检查器中添加编辑界面，就要用到 EditorInspectorPlugin 。
 
 这个类会自动生成基础的编辑界面，如下图中框出的部分所示，其中包含了 properties，以及 Fractal、Domain Warp 等 categories 。
 
 ![](default.png)
+
+当然，这种简单的编辑界面肯定是不够用的，很多时候都需要对编辑界面做一些改动，此时就要重写其中的方法。
 
 ## 具体实现
 
@@ -28,14 +30,23 @@ tags:
 
 2. 为每个 category 和 property 调用 \_parse_category 和 \_parse_property。
 
-- \_parse_group 在每个 category 的开头添加自定义控件。
-- \_parse_property 可以在每个 property 的开头添加自定义控件，也可以移除自动生成的控件，只保留自定义控件。
+- \_parse_group 在 category 的开头添加自定义控件。
+- \_parse_property 在 property 的开头添加自定义控件。该函数有返回值，若返回 true 则会移除默认的编辑控件，只保留自定义控件。
 
 3. 调用 \_parse_end，在末尾添加自定义控件。
 
-要自定义一个属性编辑器，只需要继承自该类，然后重写这些函数。
+在每个函数中，都是先构造一个自定义控件，再调用 add_custom_control 添加该控件。
 
-在每个函数中，常见的实现方法都是先构造一个自定义控件，再调用 add_custom_control 添加该控件。
+除此之外，要为指定的 property 添加自定义控件，除了重写 \_parse_property ，还可以使用以下两个函数：
+
+- add_property_editor
+  在指定的 property 处添加自定义控件
+- add_property_editor_for_multiple_properties
+  在指定的多个 property 处添加自定义控件
+
+两者均有 add_to_end 参数，若为 true 则将自定义控件控件加到默认控件之后。
+
+两者都无法控制移除默认控件，如果要移除默认控件依然要重写 \_parse_property
 
 最后，和其他自定义控件一样，记得使用 EditorPlugin 注册写好的属性编辑器。
 

@@ -1,0 +1,70 @@
+---
+title: Godot插件 —— EditorInspectorPlugin
+date: 2024-01-13 12:48:37
+category:
+  - 文章
+tags:
+  - Godot
+  - Godot 插件
+---
+
+如果想要给一个自定义的对象（通常是 resource）在检查器中添加自定义编辑界面，就要用到 EditorInspectorPlugin 。
+
+这个类会自动生成基础的编辑界面，如下图中框出的部分所示，其中包含了 properties，以及 Fractal、Domain Warp 等 categories 。
+
+![](default.png)
+
+## 具体实现
+
+首先要重写 \_can_handle 函数，表明该编辑器能处理的对象类型。该函数接受一个 Object，如果能处理则返回 true，否则返回 false。
+
+常见的实现方法是对 Object 调用 cast_to 进行类型转换，判断转换结果是否为 nullptr 。
+
+编辑器会在用户检查一个对象时遍历 plugin 列表，选择第一个 \_can_handle 返回 true 的 plugin 添加到检查器中。
+
+然后会按如下流程调用函数：
+
+1. 调用 \_parse_begin ，在开头添加自定义控件。
+
+2. 为每个 category 和 property 调用 \_parse_category 和 \_parse_property。
+
+- \_parse_group 在每个 category 的开头添加自定义控件。
+- \_parse_property 可以在每个 property 的开头添加自定义控件，也可以移除自动生成的控件，只保留自定义控件。
+
+3. 调用 \_parse_end，在末尾添加自定义控件。
+
+要自定义一个属性编辑器，只需要继承自该类，然后重写这些函数。
+
+在每个函数中，常见的实现方法都是先构造一个自定义控件，再调用 add_custom_control 添加该控件。
+
+最后，和其他自定义控件一样，记得使用 EditorPlugin 注册写好的属性编辑器。
+
+## 例子
+
+下图中通过重写 \_parse_begin 函数，为 FastNoiseLite 在开头添加了一个预览控件：
+
+![](parse_begin.png)
+
+```cpp
+// _parse_begin 中调用了该函数
+void ZN_FastNoiseLiteEditorInspectorPlugin::_zn_parse_begin(Object *p_object) {
+	const ZN_FastNoiseLite *noise_ptr = Object::cast_to<ZN_FastNoiseLite>(p_object);
+	if (noise_ptr != nullptr) {
+		Ref<ZN_FastNoiseLite> noise(noise_ptr);
+
+		ZN_FastNoiseLiteViewer *viewer = memnew(ZN_FastNoiseLiteViewer);
+		viewer->set_noise(noise);
+		add_custom_control(viewer);
+		return;
+	}
+	const ZN_FastNoiseLiteGradient *noise_gradient_ptr = Object::cast_to<ZN_FastNoiseLiteGradient>(p_object);
+	if (noise_gradient_ptr != nullptr) {
+		Ref<ZN_FastNoiseLiteGradient> noise_gradient(noise_gradient_ptr);
+
+		ZN_FastNoiseLiteViewer *viewer = memnew(ZN_FastNoiseLiteViewer);
+		viewer->set_noise_gradient(noise_gradient);
+		add_custom_control(viewer);
+		return;
+	}
+}
+```

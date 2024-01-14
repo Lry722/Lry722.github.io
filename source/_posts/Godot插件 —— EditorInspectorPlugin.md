@@ -8,13 +8,13 @@ tags:
   - Godot 插件
 ---
 
-如果想要给一个自定义的对象（通常是 resource）在检查器中添加编辑界面，就要用到 EditorInspectorPlugin 。
+如果想要给一个自定义的对象（Node/Resource）在检查器中添加编辑界面，就要用到 EditorInspectorPlugin 。
 
 这个类会自动生成基础的编辑界面，如下图中框出的部分所示，其中包含了 properties，以及 Fractal、Domain Warp 等 categories 。
 
 ![](default.png)
 
-当然，这种简单的编辑界面肯定是不够用的，很多时候都需要对编辑界面做一些改动，此时就要重写其中的方法。
+当然，这种简单的编辑界面肯定是不够用的，很多时候都需要对编辑界面做一些改动，此时就要继承并重写其中的函数。
 
 ## 具体实现
 

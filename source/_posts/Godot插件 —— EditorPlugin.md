@@ -47,7 +47,7 @@ tags:
 | scene_closed        | 用户关闭场景时发出。参数是关闭的场景的文件路径。                                                     |
 
 2. **往编辑器中任意位置添加任意控件**
-   通过形如 `add_control_to_XXX` 的函数，可以往编辑器中任意位置添加$\footnotesize{\stackrel{Control 节点}{自定义控件}}$
+   通过形如 `add_control_to_XXX` 的函数，可以往编辑器中任意位置添加$\stackrel{Control 节点}{自定义控件}$
 
 3. **注册基于常见功能模板的插件**
    Godot 为一些常见功能提供了模板，只要继承自模板就能方便快捷地实现相关功能，EditorPlugin 中则为每个模板提供了对应的形如 `add_XXX_plugin` 的注册函数。

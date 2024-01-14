@@ -1,6 +1,7 @@
 ---
 title: Godot插件 —— EditorPlugin
 date: 2024-01-14 10:48:01
+mathjax: true
 category:
   - 文章
 tags:
@@ -43,7 +44,7 @@ tags:
 | main_screen_changed | 当用户改变工作空间（**2D、3D、Script、AssetLib、其他自定义工作空间**）时发出。参数是新工作空间的名称。 |
 | resource_saved      | 资源保存到磁盘时发出。参数是被保存的资源                                                               |
 | scene_changed       | 更改活动场景时发出。参数是新活动场景的根节点。如果新活动场景根节点为空，则为 `null`。                  |
-| scene_closed        | 当用户关闭场景时发出。参数是关闭的场景的文件路径。                                                     |
+| scene_closed        | 用户关闭场景时发出。参数是关闭的场景的文件路径。                                                     |
 
 2. **往编辑器中任意位置添加任意控件**
    通过形如 `add_control_to_XXX` 的函数，可以往编辑器中任意位置添加$\footnotesize{\stackrel{Control 节点}{自定义控件}}$

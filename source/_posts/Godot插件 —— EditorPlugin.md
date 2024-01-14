@@ -51,7 +51,7 @@ tags:
 
 3. **注册基于常见功能模板的插件**
    Godot 为一些常见功能提供了模板，只要继承自模板就能方便快捷地实现相关功能，EditorPlugin 中则为每个模板提供了对应的形如 `add_XXX_plugin` 的注册函数。
-   例如 `EditorInceptorPlugin` 就是检查器插件的模板，它提供了默认生成的属性编辑器。通过 EditorPlugin 的 `add_inspector_plugin` 函数，就能将自定义的 `EditorInceptorPlugin` 子类注册进检查器。具体细节看[这篇文章](https://lry722.github.io/2024/01/13/%E8%87%AA%E5%88%B6Godot%E6%8F%92%E4%BB%B6%20%E2%80%94%E2%80%94%20EditorInspectorPlugin/)。
+   例如 `EditorInceptorPlugin` 就是检查器插件的模板，它提供了默认生成的属性编辑器。通过 EditorPlugin 的 `add_inspector_plugin` 函数，就能将自定义的 `EditorInceptorPlugin` 子类注册进检查器。具体细节看[这篇文章](https://lry722.github.io/2024/01/13/Godot%E6%8F%92%E4%BB%B6%20%E2%80%94%E2%80%94%20EditorInspectorPlugin/)。
    任何此类控件都要记得在对应的自定义 EditorPlugin 子类中进行注册，否则编辑器是认不到的。
 
 4. **添加其他各种东西**

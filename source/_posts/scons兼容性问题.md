@@ -5,7 +5,7 @@ category:
   - 随笔
 tags:
   - Python
-  - Scons
+  - SCons
 ---
 
 今天在研究 GDExtension，使用 scons 带 custom_api_file 参数编译 Godot 的时候遇到了如下报错：

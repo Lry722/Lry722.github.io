@@ -21,5 +21,6 @@
   "frontMatter.dashboard.openOnStart": false,
   "[astro]": {
     "editor.defaultFormatter": "astro-build.astro-vscode"
-  }
+  },
+  "Codegeex.EnableExtension": false
 }

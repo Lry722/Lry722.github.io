@@ -1,5 +1,5 @@
 ---
-title: MySQL 面试题（一）
+title: MySQL 中的索引
 published: 2024-06-18
 category: 文章
 tags:

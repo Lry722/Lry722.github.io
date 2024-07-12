@@ -7,15 +7,6 @@ tags:
   - 图形学
 ---
 
-<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
-
-<!-- code_chunk_output -->
-
-- [main.cpp](#maincpp)
-- [constants.h](#constantsh)
-
-<!-- /code_chunk_output -->
-
 虽然之前已经学了 Godot 的渲染服务，但不清楚其实现原理。
 
 于是前几天两天突然心血来潮，诞生了学 Vulkan 的念头。
@@ -27,6 +18,15 @@ tags:
 跟着官方教程学了两个晚上，成功画出了第一个三角形。又花了一晚上研究，在注释中写了笔记，个人感觉已经把我觉得难理解的地方都解释清楚了。
 
 以下是包含笔记的完整 cpp 代码，shader 代码参见官方教程。
+
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
+<!-- code_chunk_output -->
+
+- [main.cpp](#maincpp)
+- [constants.h](#constantsh)
+
+<!-- /code_chunk_output -->
 
 ### main.cpp
 

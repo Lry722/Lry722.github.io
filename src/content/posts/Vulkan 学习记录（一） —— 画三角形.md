@@ -25,6 +25,8 @@ tags:
 
 - [main.cpp](#maincpp)
 - [constants.h](#constantsh)
+- [utils.h](#utilsh)
+- [utils.cpp](#utilscpp)
 
 <!-- /code_chunk_output -->
 
@@ -970,6 +972,42 @@ const std::vector<const char*> validationLayers = {
 const std::vector<const char*> deviceExtensions = {
     VK_KHR_SWAPCHAIN_EXTENSION_NAME
 };
+```
 
+### utils.h
 
+```cpp
+#pragma once
+
+#include <string>
+#include <vector>
+
+std::vector<char> readFile(const std::string& filename);
+```
+
+### utils.cpp
+
+```cpp
+#include "utils.h"
+
+#include <fstream>
+#include <vector>
+
+std::vector<char> readFile(const std::string& filename) {
+    std::ifstream file(filename, std::ios::ate | std::ios::binary);
+
+    if (!file.is_open()) {
+        throw std::runtime_error("failed to open file!");
+    }
+
+    size_t fileSize = (size_t)file.tellg();
+    std::vector<char> buffer(fileSize);
+
+    file.seekg(0);
+    file.read(buffer.data(), fileSize);
+
+    file.close();
+
+    return buffer;
+}
 ```

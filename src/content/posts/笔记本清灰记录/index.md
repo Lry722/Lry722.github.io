@@ -1,6 +1,6 @@
 ---
 title: 笔记本清灰记录
--published: 2024-07-15
+published: 2024-07-15
 category: 随笔
 tags:
   - 体验
